@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WavePayroll.Data;
 using Microsoft.EntityFrameworkCore;
-using WavePayroll.Models;
 
 namespace WavePayroll
 {
@@ -20,8 +20,11 @@ namespace WavePayroll
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PayrollContext>(opt =>
-                                               opt.UseInMemoryDatabase("PayrollList"));
+            services.AddDbContext<PayrollContext>(options =>
+            options.UseSqlite(Configuration.GetConnectionString("PayrollContext")));
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddControllers();
         }
 

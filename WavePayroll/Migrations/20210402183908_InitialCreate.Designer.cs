@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WavePayroll.Data;
@@ -10,36 +9,35 @@ using WavePayroll.Data;
 namespace WavePayroll.Migrations
 {
     [DbContext(typeof(PayrollContext))]
-    [Migration("20210331133227_InitialCreate")]
+    [Migration("20210402183908_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.4")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.4");
 
             modelBuilder.Entity("WavePayroll.Models.FileUpload.UploadedFile", b =>
                 {
                     b.Property<int>("UploadedFileID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("EmployeeID")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int>("HoursWorked")
-                        .HasColumnType("int");
+                    b.Property<double>("HoursWorked")
+                        .HasColumnType("REAL");
 
-                    b.Property<string>("JobGroup")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                    b.Property<char>("JobGroup")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ReportID")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("UploadedFileID");
 

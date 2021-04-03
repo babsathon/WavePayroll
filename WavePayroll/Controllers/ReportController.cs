@@ -1,19 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using WavePayroll.Business.Report;
+using WavePayroll.Data;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WavePayroll.Controllers
 {
-    public class ReportController : Controller
+    [Route("api/report")]
+    [ApiController]
+    public class ReportController : ControllerBase
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        private readonly PayrollContext _context;
+
+        public ReportController(PayrollContext context)
         {
-            return View();
+            _context = context;
         }
+
+        [HttpGet]
+        public IActionResult Report()
+        {
+            var report = new Report(_context);
+
+
+            return Ok(new { PayrollReport = report.GetPayrollReport() });
+        }
+       
     }
 }

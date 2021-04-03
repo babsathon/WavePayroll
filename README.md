@@ -150,3 +150,56 @@ Evaluation of your submission will be based on the following criteria.
    they explained?
 1. Did you separate any concerns in your application? Why or why not?
 1. Does your solution use appropriate data types for the problem as described?
+
+## Build Instructions:
+
+1.  Install Visual Studio 2019 (Community) https://visualstudio.microsoft.com/downloads/
+2. Install Latest version of .Net Core https://dotnet.microsoft.com/download/dotnet/5.0/
+
+## Run Instructions:
+
+In your favorite console go into the Project folder and run:
+
+```
+cd WavePayroll
+dotnet build
+dotnet run
+```
+
+## API Instructions:
+
+1. Download Postman https://www.postman.com/downloads/
+2. Tutorial to use postman: https://learning.postman.com/docs/getting-started/sending-the-first-request/
+2. To get current records:
+    - Make a Basic Get Request
+    - Use the url: https://localhost:5001/api/report
+3. To upload a file:
+    - Make a POST Request
+    - Use the url: https://localhost:5001/api/upload
+    - Under the Body tab, add your key to be `file`
+    - Hover over the key and choose type to be file instead of text
+    - Upload your csv as the value and send your request
+
+## Database Viewing Instructions
+
+1. To view the tables in the database, download SQLLite https://sqlitebrowser.org/dl/
+2. After running the application, the database Payroll.db will be created.
+3. To view the database, you can open the file with SQLLite
+
+## Q&A
+
+1. How did you test that your implementation was correct?
+    - After I was able to upload a file and get a report through the api. I tested that the implementation was correct by manully going through the results from the report api and then calculating the input from the csv files (samples folder) to make sure they match up. 
+    - I chose not to write unit tests or take a test driven development approach due to time constraints. Another reason is because I am under the assumption that the core funtionality of the apis might change due to the tool being in an early stage of the development process and it is more a of proof of concept.
+
+2. If this application was destined for a production environment, what would you add or change?
+    - The application needs additional api features like allowing the user to update/delete entries based on report id or based on employee id. This features are important incase they made any mistakes
+    - The tool needs more validation like for valid file names and making sure it is a csv file. With this requires better formatted error messages when the frontend grabs the api messages and displays it to the user.
+    - Versioning of the api (v1, v2 etc)
+    - Caching of the data to return local memory for faster per
+    -  Look into having good security practices around the access of the api
+    -  Allow for pagination so that the data is not returned all at once
+
+3. What compromises did you have to make as a result of the time constraints of this challenge?
+    - As mentioned, I did not use a test driven development approach
+    - File parsing validation is not completed

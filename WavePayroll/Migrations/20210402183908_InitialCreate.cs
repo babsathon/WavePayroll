@@ -11,12 +11,13 @@ namespace WavePayroll.Migrations
                 name: "UploadedFile",
                 columns: table => new
                 {
-                    UploadedFileID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HoursWorked = table.Column<int>(type: "int", nullable: false),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false),
-                    JobGroup = table.Column<string>(type: "nvarchar(1)", nullable: false)
+                    UploadedFileID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ReportID = table.Column<int>(type: "INTEGER", nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    HoursWorked = table.Column<double>(type: "REAL", nullable: false),
+                    EmployeeID = table.Column<int>(type: "INTEGER", nullable: false),
+                    JobGroup = table.Column<char>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
